@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace A1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240107203224_AddStationEntity")]
-    partial class AddStationEntity
+    [Migration("20240107213712_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,7 @@ namespace A1.Migrations
                     b.ToTable("companies");
                 });
 
-            modelBuilder.Entity("A1.data.Entities.StationEntity", b =>
+            modelBuilder.Entity("A1.data.Entities.Station", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,8 +68,9 @@ namespace A1.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("address_en");
 
-                    b.Property<Guid?>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("company_id");
 
                     b.Property<string>("ConditionsAr")
                         .HasColumnType("nvarchar(max)")
@@ -111,9 +112,9 @@ namespace A1.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("lat");
 
-                    b.Property<string>("LayoutUrl")
+                    b.Property<string>("Layout")
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("layout_url");
+                        .HasColumnName("layout");
 
                     b.Property<string>("Lng")
                         .HasColumnType("nvarchar(max)")
@@ -150,11 +151,13 @@ namespace A1.Migrations
                     b.ToTable("stations");
                 });
 
-            modelBuilder.Entity("A1.data.Entities.StationEntity", b =>
+            modelBuilder.Entity("A1.data.Entities.Station", b =>
                 {
                     b.HasOne("A1.data.Entities.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Company");
                 });

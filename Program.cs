@@ -22,7 +22,25 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception e)
+    {
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsJsonAsync("an error occurred");
+        Console.WriteLine(e);
+    }
+});
+
 app.UseHttpsRedirection();
 app.MapControllers();
-app.Run();
 
+var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+dbContext.Database.Migrate();
+
+app.Run();
