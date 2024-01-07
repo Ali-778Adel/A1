@@ -1,0 +1,15 @@
+.idea
+node_modules
+.DS_Store
+*.dll
+bin
+obj
+.sass-cache
+.vscode
+bower_components
+uaevba.sln.DotSettings.user
+.gitlab-ci.yml
+.vs
+!libwkhtmltox.dll
+out
+.env
