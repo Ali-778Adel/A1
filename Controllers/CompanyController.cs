@@ -42,7 +42,7 @@ public class CompanyController : Controller
         var quary = _appDbContext.Companies.Where(x=>x.Id==id);
 
         var company =
-            quary.Select(CompanyGetDto.Mapper).FirstOrDefault(x => x.Id == id);
+            quary.Select(CompanyGetDto.Mapper()).FirstOrDefault(x => x.Id == id);
             
 
         if (company == null) return NotFound();

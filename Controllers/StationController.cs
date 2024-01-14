@@ -5,10 +5,10 @@ using A1.Dtos.Station;
 namespace A1.Controllers;
 
 [ApiController]
-[Route("api/stations")]
-public class StationsController(AppDbContext appDbContext) : Controller
+[Route("api/[controller]")]
+public class StationController(AppDbContext appDbContext) : Controller
 {
-    [HttpGet("get_all_stations")]
+    [HttpGet]
     public IActionResult List(int pagSize = 10, int pageNumber = 0, string keyword = "")
     {
         var query = appDbContext.Stations.AsQueryable();
@@ -21,13 +21,14 @@ public class StationsController(AppDbContext appDbContext) : Controller
             .OrderBy(x => x.UpdatedAt)
             .Skip(pagSize * pageNumber)
             .Take(pagSize)
-            .Select(StationListDto.Mapper).ToList();
+            .Select(StationListDto.Mapper())
+            .ToList();
 
         return Ok(allStations);
     }
 
 
-    [HttpGet("get_station/{id}")]
+    [HttpGet("{id}")]
     public IActionResult Get(Guid id)
     {
         var station =
@@ -37,7 +38,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
     }
 
 
-    [HttpPost("create_station")]
+    [HttpPost]
     [RequestSizeLimit(long.MaxValue)]
     public IActionResult Create([FromForm] StationCreateDto model)
     {
@@ -46,7 +47,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
         return Ok("station created successfully");
     }
     
-    [HttpPut("update_station")]
+    [HttpPut]
     public IActionResult Update([FromForm] StationEditDto model)
     {
         var isSuccess = CreateOrUpdate(model);
@@ -54,7 +55,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
         return Ok("station updated successfully");
     }
 
-    [HttpDelete("delete_station/{id}")]
+    [HttpDelete("{id}")]
     public IActionResult Delete(Guid id)
     {
         var item = appDbContext.Stations.Find(id);
@@ -65,12 +66,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
     }
     
     
-/// <summary>
-/// it made to as shared object pattern to be done depending its model
-/// create or update logic 
-/// </summary>
-/// <param name="model"></param>
-/// <returns></returns>
+
     public bool CreateOrUpdate(StationCreateDto model)
     {
         Station station;
@@ -121,9 +117,6 @@ public class StationsController(AppDbContext appDbContext) : Controller
         station.InvestNumber = model.InvestNumber;
         station.CompanyId = model.CompanyId;
         
-            
-        station.Company = appDbContext.Companies.FirstOrDefault(c=>c.Id==model.CompanyId);
-
         if (model is StationEditDto)
         {
             station.UpdatedAt = DateTime.UtcNow;
