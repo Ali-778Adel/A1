@@ -29,8 +29,6 @@ public class AppDbContext : DbContext
             v => Convert.FromBase64String(v)
         );
     }
-
     public DbSet<Company> Companies { get; set; }
-
     public DbSet<Station> Stations { get; set; }
 }

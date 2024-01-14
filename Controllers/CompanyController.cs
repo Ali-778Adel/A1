@@ -3,8 +3,7 @@ using A1.data;
 using A1.data.Entities;
 using A1.Dtos.Company;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace A1.Controllers;
 
@@ -21,48 +20,95 @@ public class CompanyController : Controller
     }
 
     [HttpGet("get_all_companies")]
-    public IActionResult List()
+    public IActionResult List(string keyword="")
     {
-        var companies = _appDbContext.Companies.ToList();
-        Console.WriteLine(companies);
-        return Ok(companies);
+        var query = _appDbContext.Companies.AsQueryable();
+        Console.WriteLine(query);
+        if (!string.IsNullOrEmpty(keyword))
+        {
+             query = query.Where(c => c.NameAr.Contains(keyword)|| c.NameEn.Contains(keyword));
+        }
+
+        var allCompanies = query.OrderBy(c => c.UpdatedAt)
+            .Select((CompanyListDto.Mapper))
+            .ToList();
+
+        return Ok(allCompanies);
     }
 
-    [HttpGet("{id:guid}")] //route only 
+    [HttpGet("get_company/{id}")] //route only 
     public IActionResult Get(Guid id) //query parameter
     {
-        return Ok();
+        var quary = _appDbContext.Companies.Where(x=>x.Id==id);
+
+        var company =
+            quary.Select(CompanyGetDto.Mapper).FirstOrDefault(x => x.Id == id);
+            
+
+        if (company == null) return NotFound();
+
+        return Ok(company);
+    }
+    
+    [HttpPost("add_company")]
+
+    public IActionResult Create([FromForm]CompanyCreateDto companyCreateDto)
+    {
+        CreateOrUpdate(companyCreateDto);
+        return Ok("company created successfully");
     }
 
 
-    [HttpPost("add_company")]
-    public IActionResult Create([FromBody] CompanyListDto companyCto)
+    [HttpPut("update_company")]
+    public IActionResult Update([FromForm]CompanyEditDto companyEditDto)
     {
-        if (companyCto is null)
-        {
-            return BadRequest("Company object is null");
-        }
-
-        try
-        {
-
-            var result= _appDbContext.Companies.Add(new Company{
-                NameAr = companyCto.NameAr,
-                NameEn = companyCto.NameEn,
-                Slug = companyCto.Slug});
-            _appDbContext.SaveChanges();
-
-            return Ok(result);
-        }
-        catch (Exception e)
+        CreateOrUpdate(companyEditDto);
         
-        {
-            // Check if it's a duplicate key violation
-            Console.WriteLine(e);
+        return Ok("item updated successfully");
+    }
 
-            // Handle other types of exceptions
-            return BadRequest($"Error adding company: {e.Message}");
+    public bool CreateOrUpdate(CompanyCreateDto model)
+    {
+        Company company; 
+        if (model is CompanyEditDto companyEditDto)
+        {
+            company = _appDbContext.Companies.FirstOrDefault(x=>x.Id==companyEditDto.Id);
+            if (company == null) return false;
         }
+        else
+        {
+            company = new Company();
+            _appDbContext.Companies.Add(company);
+        }
+
+        company.NameAr = model.NameAr;
+        company.NameEn = model.NameEn;
+        company.Slug = model.Slug;
+        if (model is CompanyEditDto )
+        {
+            company.UpdatedAt = DateTime.UtcNow;    
+        }
+        else
+        {
+            company.CreatedAt = DateTime.UtcNow;
+            company.UpdatedAt = DateTime.UtcNow;    
+        }
+        
+        _appDbContext.SaveChanges();
+        return true;
+    }
+
+
+[HttpDelete("delete_company/{id}")]
+    public IActionResult Delete(Guid id)
+    {
+        var item = _appDbContext.Companies.Find(id);
+        Console.WriteLine(item);      
+        if (item == null) return NotFound("item not found");
+        
+        _appDbContext.Companies.Remove(item);
+        _appDbContext.SaveChanges();
+        return Ok($"Item deleted successfully{item}");
     }
 
 }

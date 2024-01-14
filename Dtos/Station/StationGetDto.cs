@@ -11,6 +11,7 @@ public class StationGetDto
         NameAr = item.NameAr,
         NameEn = item.NameEn,
         Slug = item.Slug,
+        Comapny = item.Company,
         AddressAr = item.AddressAr,
         AddressEn = item.AddressEn,
         Lat = item.Lat,
@@ -26,6 +27,8 @@ public class StationGetDto
         ConditionsEn = item.ConditionsEn,
         MoreServices = item.MoreServices,
         InvestNumber = item.InvestNumber,
+        CreatedAt = item.CreatedAt,
+        UpdatedAt = item.UpdatedAt
     };
 
     public Guid Id { get; set; }
@@ -34,6 +37,7 @@ public class StationGetDto
     public string NameAr { get; set; }
     public string NameEn { get; set; }
     public string Slug { get; set; }
+    public data.Entities.Company Comapny { get; set; }
     public string AddressAr { get; set; }
     public string AddressEn { get; set; }
     public string Lat { get; set; }
@@ -49,4 +53,8 @@ public class StationGetDto
     public string InvestNumber { get; set; }
     public List<string> ConditionsAr { get; set; }
     public List<string> ConditionsEn { get; set; }
+    
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
 }

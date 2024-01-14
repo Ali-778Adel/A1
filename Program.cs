@@ -1,4 +1,5 @@
 using A1.data;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +10,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
+
+
+ 
+
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// Add the following lines to configure services
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,19 +31,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (Exception e)
-    {
-        context.Response.StatusCode = 500;
-        await context.Response.WriteAsJsonAsync("an error occurred");
-        Console.WriteLine(e);
-    }
-});
 
 app.UseHttpsRedirection();
 app.MapControllers();
@@ -42,5 +38,7 @@ app.MapControllers();
 var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 dbContext.Database.Migrate();
+
+
 
 app.Run();

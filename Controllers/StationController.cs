@@ -1,24 +1,16 @@
-﻿using System.Reflection;
-using A1.data;
+﻿using A1.data;
 using A1.data.Entities;
-using A1.Dtos.Company;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Web;
 using A1.Dtos.Station;
-
-
 namespace A1.Controllers;
 
 [ApiController]
 [Route("api/stations")]
 public class StationsController(AppDbContext appDbContext) : Controller
 {
-    [HttpGet]
+    [HttpGet("get_all_stations")]
     public IActionResult List(int pagSize = 10, int pageNumber = 0, string keyword = "")
     {
-        throw new Exception("test");
         var query = appDbContext.Stations.AsQueryable();
         if (!string.IsNullOrEmpty(keyword))
         {
@@ -26,7 +18,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
         }
 
         var allStations = query
-            .OrderBy(x => x.Id)
+            .OrderBy(x => x.UpdatedAt)
             .Skip(pagSize * pageNumber)
             .Take(pagSize)
             .Select(StationListDto.Mapper).ToList();
@@ -35,44 +27,50 @@ public class StationsController(AppDbContext appDbContext) : Controller
     }
 
 
-    [HttpGet("{id}")]
-    public IActionResult Get(Guid id, bool forEdit)
+    [HttpGet("get_station/{id}")]
+    public IActionResult Get(Guid id)
     {
-        var station = forEdit
-            ? appDbContext.Stations.Select(StationEditDto.Mapper).FirstOrDefault(x => x.Id == id) as object
-            : appDbContext.Stations.Select(StationGetDto.Mapper).FirstOrDefault(x => x.Id == id);
-
+        var station =
+             appDbContext.Stations.Select(StationGetDto.Mapper).FirstOrDefault(x => x.Id == id);
         if (station == null) return NotFound();
         return Ok(station);
     }
 
 
-    [HttpPost]
+    [HttpPost("create_station")]
+    [RequestSizeLimit(long.MaxValue)]
     public IActionResult Create([FromForm] StationCreateDto model)
     {
         var isSuccess = CreateOrUpdate(model);
         if (!isSuccess) return BadRequest();
-        return Ok();
+        return Ok("station created successfully");
     }
-
-    [HttpPut]
+    
+    [HttpPut("update_station")]
     public IActionResult Update([FromForm] StationEditDto model)
     {
         var isSuccess = CreateOrUpdate(model);
         if (!isSuccess) return BadRequest();
-        return Ok();
+        return Ok("station updated successfully");
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete_station/{id}")]
     public IActionResult Delete(Guid id)
     {
         var item = appDbContext.Stations.Find(id);
         if (item == null) return NotFound();
         appDbContext.Stations.Remove(item);
         appDbContext.SaveChanges();
-        return Ok();
+        return Ok("station deleted successfully");
     }
-
+    
+    
+/// <summary>
+/// it made to as shared object pattern to be done depending its model
+/// create or update logic 
+/// </summary>
+/// <param name="model"></param>
+/// <returns></returns>
     public bool CreateOrUpdate(StationCreateDto model)
     {
         Station station;
@@ -86,7 +84,7 @@ public class StationsController(AppDbContext appDbContext) : Controller
             station = new Station();
             appDbContext.Stations.Add(station);
         }
-
+    
         if (model.Image != null)
         {
             using var ms = new MemoryStream();
@@ -99,8 +97,9 @@ public class StationsController(AppDbContext appDbContext) : Controller
             using var ms = new MemoryStream();
             model.Layout.CopyTo(ms);
             station.Layout = ms.ToArray();
+           
         }
-
+    
         station.Active = model.Active;
         station.NameAr = model.NameAr;
         station.NameEn = model.NameEn;
@@ -121,8 +120,23 @@ public class StationsController(AppDbContext appDbContext) : Controller
         station.MoreServices = model.MoreServices;
         station.InvestNumber = model.InvestNumber;
         station.CompanyId = model.CompanyId;
+        
+            
+        station.Company = appDbContext.Companies.FirstOrDefault(c=>c.Id==model.CompanyId);
+
+        if (model is StationEditDto)
+        {
+            station.UpdatedAt = DateTime.UtcNow;
+        }
+        else
+        {
+            station.CreatedAt = DateTime.UtcNow;
+            station.UpdatedAt = DateTime.UtcNow;   
+        }
+
 
         appDbContext.SaveChanges();
+        
         return true;
     }
 }

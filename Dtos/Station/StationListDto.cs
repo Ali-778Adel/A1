@@ -6,13 +6,14 @@ public class StationListDto
 {
     public static Expression<Func<data.Entities.Station, StationListDto>> Mapper => item => new StationListDto()
     {
+        Id = item.Id,
         Active = item.Active,
         NameAr = item.NameAr,
         NameEn = item.NameEn,
         Slug = item.Slug,
+        Comapny = item.Company,
         AddressAr = item.AddressAr,
         AddressEn = item.AddressEn,
-        Image = item.Image,
         Lat = item.Lat,
         Lng = item.Lng,
         Solar = item.Solar,
@@ -26,15 +27,20 @@ public class StationListDto
         ConditionsEn = item.ConditionsEn,
         MoreServices = item.MoreServices,
         InvestNumber = item.InvestNumber,
-        Layout = item.Layout
+        CreatedAt = item.CreatedAt,
+        UpdatedAt = item.UpdatedAt,
+        // Layout = item.Layout,
+        
     };
 
-
+    public Guid Id { get; set; }
     public bool Active { get; set; }
     public string NameAr { get; set; }
     public string NameEn { get; set; }
     public string Slug { get; set; }
-    public byte[] Image { get; set; }
+    public data.Entities.Company Comapny { get; set; }
+
+    // public byte[] Image { get; set; }
     public string AddressAr { get; set; }
     public string AddressEn { get; set; }
     public string Lat { get; set; }
@@ -50,5 +56,14 @@ public class StationListDto
     public string InvestNumber { get; set; }
     public List<string> ConditionsAr { get; set; }
     public List<string> ConditionsEn { get; set; }
-    public byte[] Layout { get; set; }
+    // public byte[] Layout { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime UpdatedAt { get; set; }
+
+    
+    
+    
+    
 }

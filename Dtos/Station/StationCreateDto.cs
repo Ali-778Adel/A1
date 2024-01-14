@@ -9,7 +9,6 @@ public class StationCreateDto
     public string NameAr { get; set; }
     public string NameEn { get; set; }
     public string Slug { get; set; }
-
     public Guid CompanyId { get; set; }
     public IFormFile Image { get; set; }
     public string AddressAr { get; set; }
@@ -28,4 +27,6 @@ public class StationCreateDto
     public List<string> ConditionsAr { get; set; }
     public List<string> ConditionsEn { get; set; }
     public IFormFile Layout { get; set; }
+
+    
 }

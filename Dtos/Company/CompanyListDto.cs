@@ -11,10 +11,17 @@ public class CompanyListDto
         NameAr = item.NameAr,
         NameEn = item.NameEn,
         Slug = item.Slug,
+        CreatedAt = item.CreatedAt,
+        UpdatedAt = item.UpdatedAt
     };
 
-    public Guid Id { get; set; }
-    [Required] public string NameAr { get; set; }
-    [Required] public string NameEn { get; set; }
-    [Required] public string Slug { get; set; }
+    public   Guid Id { get; set; }
+     public string NameAr { get; set; }
+     public string NameEn { get; set; }
+     public string Slug { get; set; }
+     
+     public DateTime CreatedAt { get; set; }
+     public DateTime UpdatedAt { get; set; }
+    
+    
 }

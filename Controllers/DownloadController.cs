@@ -7,7 +7,7 @@ namespace A1.Controllers;
 [Route("api/[controller]")]
 public class DownloadController(AppDbContext appDbContext) : Controller
 {
-    [HttpGet("station-image/{stationId}")]
+    [HttpGet("station_image/{stationId}")]
     public IActionResult StationImage(Guid stationId)
     {
         var stationImage = appDbContext
@@ -16,22 +16,23 @@ public class DownloadController(AppDbContext appDbContext) : Controller
             .Select(x => x.Image)
             .FirstOrDefault();
         
-        if (stationImage == null) return NotFound();
+         
+        if (stationImage == null) return NotFound("no image uploaded for this station");
         
-        return File(stationImage, "image/jpeg");
+        return File(stationImage, "image/png");
     }
     
-    [HttpGet("station-layout/{stationId}")]
+    [HttpGet("station_layout/{stationId}")]
     public IActionResult StationLayout(Guid stationId)
     {
-        var stationImage = appDbContext
+        var stationLayout = appDbContext
             .Stations
             .Where(x => x.Id == stationId)
             .Select(x => x.Layout)
             .FirstOrDefault();
         
-        if (stationImage == null) return NotFound();
+        if (stationLayout == null) return NotFound("no image uploaded for this station");
         
-        return File(stationImage, "image/jpeg");
+        return File(stationLayout, "image/png");
     }
 }
