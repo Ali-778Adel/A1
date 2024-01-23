@@ -15,6 +15,7 @@ public class Station
     [Column(("name_en"))] public string NameEn { get; set; }
     [MaxLength (255)]
     [Column(("slug"))] public string Slug { get; set; }
+    
     [Column(("image"))] public byte[] Image { get; set; }
     [MaxLength (255)]
     [Column(("address_ar"))] public string AddressAr { get; set; }

@@ -28,7 +28,20 @@ public class AppDbContext : DbContext
             v => Convert.ToBase64String(v),
             v => Convert.FromBase64String(v)
         );
+
+
+        modelBuilder.Entity<Unit>().Property(x => x.NotesAr).HasConversion(stringConverter);
+        modelBuilder.Entity<Unit>().Property(x => x.NotesEn).HasConversion(stringConverter);
+        
+        modelBuilder.Entity<Unit>().Property(x => x.Image).HasConversion(   
+            v=>Convert.ToBase64String(v),       
+            v=>Convert.FromBase64String(v)
+            
+            );
+        
     }
     public DbSet<Company> Companies { get; set; }
     public DbSet<Station> Stations { get; set; }
+
+    public DbSet<Unit> Units { get; set; }
 }

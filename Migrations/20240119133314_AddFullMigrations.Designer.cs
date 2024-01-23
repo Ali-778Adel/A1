@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace A1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240111205053_YourMigrationName")]
-    partial class YourMigrationName
+    [Migration("20240119133314_AddFullMigrations")]
+    partial class AddFullMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -180,6 +180,60 @@ namespace A1.Migrations
                     b.ToTable("stations");
                 });
 
+            modelBuilder.Entity("A1.data.Entities.Unit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("id");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int")
+                        .HasColumnName("code");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("image");
+
+                    b.Property<string>("NotesAr")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("note_ar");
+
+                    b.Property<string>("NotesEn")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("note_en");
+
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("price");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("size");
+
+                    b.Property<Guid>("StationId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("station_id");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updated_at");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StationId");
+
+                    b.ToTable("units");
+                });
+
             modelBuilder.Entity("A1.data.Entities.Station", b =>
                 {
                     b.HasOne("A1.data.Entities.Company", "Company")
@@ -189,6 +243,17 @@ namespace A1.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("A1.data.Entities.Unit", b =>
+                {
+                    b.HasOne("A1.data.Entities.Station", "Station")
+                        .WithMany()
+                        .HasForeignKey("StationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Station");
                 });
 #pragma warning restore 612, 618
         }
