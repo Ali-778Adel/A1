@@ -8,7 +8,6 @@ public class StationListDto
 {
     public static Expression<Func<data.Entities.Station, StationListDto>> Mapper()
     {
-        var companyExpression = CompanyGetDto.Mapper();
         return item => new StationListDto()
         {
             Id = item.Id,
@@ -33,7 +32,7 @@ public class StationListDto
             InvestNumber = item.InvestNumber,
             CreatedAt = item.CreatedAt,
             UpdatedAt = item.UpdatedAt,
-            Company = item.Company != null ? companyExpression.Compile().Invoke(item.Company) : null
+            Company = item.Company == null ? null : CompanyGetDto.Mapper().Invoke(item.Company)
         };
     }
 
@@ -59,5 +58,5 @@ public class StationListDto
     public List<string> ConditionsEn { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    public virtual CompanyGetDto Company { get; set; }
+    public CompanyGetDto Company { get; set; }
 }

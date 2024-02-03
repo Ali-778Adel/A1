@@ -1,71 +1,51 @@
-using System.Text;
+using A1.Constants;
+using A1.CultureProviders;
 using A1.data;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
+using A1.Resources.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-
-
-
- 
-
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.Configure<IISServerOptions>(options =>
+//configure localization
+builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    options.MaxRequestBodySize = long.MaxValue;
+    options.DefaultRequestCulture =
+        new RequestCulture(culture: SupportedCultures.Default, SupportedCultures.Default);
+    options.SupportedCultures = SupportedCultures.All;
+    options.SupportedUICultures = SupportedCultures.All;
+
+    options.RequestCultureProviders = new List<IRequestCultureProvider>(
+        new[] { new HeaderRequestCultureProvider() }
+    );
 });
 
-
-
-// Add the following lines to configure services
-builder.Services.Configure<FormOptions>(options =>
-{
-    options.ValueLengthLimit = int.MaxValue;
-    options.MultipartBodyLengthLimit = long.MaxValue; // if don't set 
-    //default value is: 128 MB
-    options.MultipartHeadersLengthLimit = int.MaxValue;
-    options.MemoryBufferThreshold = Int32.MaxValue;
-
-    
-});
-
-builder.Services.Configure<KestrelServerOptions>(options =>
-{
-    options.Limits.MaxRequestBodySize = long.MaxValue; // if don't set 
-    //default value is: 30 MB
-});
-
+// Add Data annotation localization.
+builder.Services.AddMvc()
+    //.AddNewtonsoftJson()
+    .AddDataAnnotationsLocalization(options =>
+        options.DataAnnotationLocalizerProvider = (_, f) => f.Create(typeof(ModelsResource)));
 
 
 var app = builder.Build();
 
-app.Use(next => context =>
-{
-    context.Request.EnableBuffering(); // Enable buffering of the request body
-    return next(context);
-});
-
-
-
 app.UseHttpsRedirection();
 app.MapControllers();
+
+// Localize strings.
+app.UseRequestLocalization();
 
 var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 dbContext.Database.Migrate();
-
-
 
 app.Run();

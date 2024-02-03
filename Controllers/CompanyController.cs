@@ -2,7 +2,9 @@
 using A1.data;
 using A1.data.Entities;
 using A1.Dtos.Company;
+using A1.Resources.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 
 namespace A1.Controllers;
@@ -13,10 +15,18 @@ namespace A1.Controllers;
 public class CompanyController : Controller
 {
     private readonly AppDbContext _appDbContext;
+    private readonly IStringLocalizer<SharedResource> _localizer;
 
-    public CompanyController(AppDbContext appDbContext)
+    public CompanyController(AppDbContext appDbContext, IStringLocalizer<SharedResource> localizer)
     {
         _appDbContext = appDbContext;
+        _localizer = localizer;
+    }
+
+    [HttpGet("localize")]
+    public IActionResult Localize()
+    {
+        return Ok(_localizer["server_running"].Value);
     }
 
     [HttpGet("get_all_companies")]

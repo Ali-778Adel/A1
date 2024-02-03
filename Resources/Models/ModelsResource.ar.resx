@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+        <xsd:element name="root" msdata:IsDataSet="true">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="metadata">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" use="required" type="xsd:string"/>
+                            <xsd:attribute name="type" type="xsd:string"/>
+                            <xsd:attribute name="mimetype" type="xsd:string"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="assembly">
+                        <xsd:complexType>
+                            <xsd:attribute name="alias" type="xsd:string"/>
+                            <xsd:attribute name="name" type="xsd:string"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="data">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+                            <xsd:attribute ref="xml:space"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="resheader">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                            </xsd:sequence>
+                            <xsd:attribute name="name" type="xsd:string" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:choice>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="invalid_0" xml:space="preserve">
+    <value>{0} غير صحيح.</value>
+        <comment/>
+  </data>
+    <data name="0_is_required" xml:space="preserve">
+    <value>{0} اجباري.</value>
+        <comment/>
+  </data>
+    <data name="name_in_arabic" xml:space="preserve">
+    <value>الإسم بالعربي</value>
+        <comment/>
+  </data>
+    <data name="0_should_have_at_least_1_characters" xml:space="preserve">
+    <value>{0} يجب أن يحتوي على {1} أحرف على الأقل.</value>
+        <comment/>
+  </data>
+    <data name="0_should_have_at_least_1_item" xml:space="preserve">
+    <value>{0} يجب أن يحتوي على {1} عنصر على الأقل.</value>
+        <comment/>
+  </data>
+    <data name="0_should_not_have_more_than_1_characters" xml:space="preserve">
+    <value>{0} يجب على أن لا يحتوي على أكثر من {1} أحرف.</value>
+        <comment/>
+  </data>
+    <data name="0_is_invalid" xml:space="preserve">
+    <value>{0} غير صحيح.</value>
+        <comment/>
+  </data>
+    <data name="0_should_be_a_pdf_file" xml:space="preserve">
+    <value>{0} يجب أن يكون ملف بي دي اف.</value>
+        <comment/>
+  </data>
+    <data name="0_can_be_between_1_and_2" xml:space="preserve">
+    <value>{0} يجب أن يكون بين {1} و {2}.</value>
+        <comment/>
+  </data>
+    <data name="first_name" xml:space="preserve">
+    <value>الأسم الأول</value>
+        <comment/>
+  </data>
+    <data name="last_name" xml:space="preserve">
+    <value>اسم العائلة</value>
+        <comment/>
+  </data>
+    <data name="email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+        <comment/>
+  </data>
+    <data name="role" xml:space="preserve">
+    <value>الوظيفة - الدور</value>
+        <comment/>
+  </data>
+    <data name="password" xml:space="preserve">
+    <value>كلمة المرور</value>
+        <comment/>
+  </data>
+    <data name="phone_number" xml:space="preserve">
+    <value>رقم الهاتف</value>
+        <comment/>
+  </data>
+    <data name="id" xml:space="preserve">
+    <value>رقم التعريف</value>
+        <comment/>
+  </data>
+    <data name="full_name" xml:space="preserve">
+    <value>الاسم الكامل</value>
+        <comment/>
+  </data>
+    <data name="date_of_birth" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+        <comment/>
+  </data>
+    <data name="country" xml:space="preserve">
+    <value>الدولة</value>
+        <comment/>
+  </data>
+    <data name="phone" xml:space="preserve">
+    <value>رقم الهاتف</value>
+        <comment/>
+  </data>
+    <data name="parent_email" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني لولي الأمر</value>
+        <comment/>
+  </data>
+    <data name="recaptcha" xml:space="preserve">
+    <value>رمز التحقق</value>
+        <comment/>
+  </data>
+    <data name="terms" xml:space="preserve">
+    <value>الشروط والأحكام</value>
+        <comment/>
+  </data>
+    <data name="acknowledgment" xml:space="preserve">
+    <value>إقرار</value>
+        <comment/>
+  </data>
+    <data name="you_should_accept_the_terms_and_conditions" xml:space="preserve">
+    <value>يجب عليك الموافقة على الشروط والأحكام.</value>
+        <comment/>
+  </data>
+    <data name="recaptcha_code_is_invalid" xml:space="preserve">
+    <value>رمز التحقق غير صحيح.</value>
+        <comment/>
+  </data>
+    <data name="image" xml:space="preserve">
+    <value>الصورة</value>
+        <comment/>
+  </data>
+    <data name="manager_staff_number" xml:space="preserve">
+    <value>الرقم الوظيفي للمسؤول</value>
+        <comment/>
+  </data>
+    <data name="organization_type" xml:space="preserve">
+    <value>نوع الوحده التنظيمية</value>
+        <comment/>
+  </data>
+    <data name="organization_number" xml:space="preserve">
+    <value>رقم الترتيب</value>
+        <comment/>
+  </data>
+    <data name="level_number" xml:space="preserve">
+    <value>المستوى</value>
+        <comment/>
+  </data>
+    <data name="0_should_not_be_more_than_5mb" xml:space="preserve">
+    <value>{0} يجب أن لا يتجاوز الحجم 5 ميجابايت</value>
+        <comment/>
+  </data>
+    <data name="name_in_english" xml:space="preserve">
+    <value>الاسم بالانجليزي</value>
+        <comment/>
+  </data>
+    <data name="code_is_already_being_used" xml:space="preserve">
+    <value>لقد سبق وتم استخدام نفس كود المؤشر من قبل مؤشر اخر، بالامكان زيادة رقم اوكثر على الكود الذي تم توليده بشكل تلقائي من قبل النظام من اجل استكمال عملية الحفظ.</value>
+        <comment/>
+  </data>
+    <data name="invalid_selected_procedures" xml:space="preserve">
+    <value>خطأ : يجب ان يكون الأجراء المرتبط بالمؤشر مدرج تحت العملية المرتبط بها المؤشر، قم بعملية اختيار العملية من جديد ثم اختيار احد الاجراءات المدرجة تحتها.</value>
+        <comment/>
+  </data>
+    <data name="a_kpi_with_that_name_already_exists" xml:space="preserve">
+    <value>لقد سبق وتم ادخال مؤشر بنفس الإسم! فضلا قم بالبحث بواسطة اسم المؤشر واستخدام نفس المؤشر بدلا من تكرار المؤشر.</value>
+        <comment/>
+  </data>
+    <data name="make_sure_that_all_target_fields_are_filled" xml:space="preserve">
+    <value>يجب تحديد المستهدفات لكافة فترات القياس </value>
+        <comment/>
+  </data>
+    <data name="the_owning_department_should_first_enter_its_result" xml:space="preserve">
+    <value>خطأ: هذا المؤشر مشترك يجب ادخال مستهدفات الوحدة التنظيمية المالكة للمؤشر قبل تحديد مستهدفات بقية الوحدات التنظيمية</value>
+        <comment/>
+  </data>
+    <data name="the_provided_department_is_not_linked_to_the_kpi" xml:space="preserve">
+    <value>خطأ: الوحدة التنظيمية التي تم اختيارها غير مرتبطة مع المؤشر</value>
+        <comment/>
+  </data>
+    <data name="invalid_targets_count" xml:space="preserve">
+    <value>خطأ: مجموع المستهدفات لا يساوي قيمة المستهدف السنوي!</value>
+        <comment/>
+  </data>
+    <data name="target_is_required" xml:space="preserve">
+    <value>يجب ادخال المستهدف</value>
+        <comment/>
+  </data>
+    <data name="the_kpi_has_been_approved_hence_adding_results_has_been_disabled" xml:space="preserve">
+    <value>خطأ: لا يمكن اجراء أي تغييرات على نتائج او بيانات المؤشر بعد ان تم اعتمادة، الرجاء التواصل مع مسؤول المؤشرات لاتاحة المؤشر للتعديل</value>
+        <comment/>
+  </data>
+    <data name="you_are_not_authorized_to_add_comment_to_this_result" xml:space="preserve">
+    <value>ليس لديك الصلاحية لاضافة تعليق على هذه النتيجة</value>
+        <comment/>
+  </data>
+    <data name="capability_or_library_file_does_not_exist" xml:space="preserve">
+    <value>خطأ: اما ان الملف غير موجود أو ان القدرة غير موجوده</value>
+        <comment/>
+  </data>
+    <data name="the_kpi_data_entry_response_attached_to_this_capability_is_not_at_the_data_entry_stage"
+          xml:space="preserve">
+    <value>يجب ان تكون حالة هذا الطلب في مرحلة ادخال البيانات حتى تتمكن من اجراء هذا التغيير .</value>
+        <comment/>
+  </data>
+    <data name="capability_is_already_using_the_file" xml:space="preserve">
+    <value>لقد سبق وتم ربط نفس الملف على نفس القدرة</value>
+        <comment/>
+  </data>
+    <data name="you_are_not_authorized_to_perform_this_action" xml:space="preserve">
+    <value>ليس لديك الصلاحية لاجراء هذا التغيير</value>
+        <comment/>
+  </data>
+    <data name="you_cannot_update_the_result_at_this_stage" xml:space="preserve">
+    <value>خطأ: لا يمكنك اجراء التعديل على النتيجة في مرحلة الطلب الحالية!</value>
+        <comment/>
+  </data>
+    <data name="cannot_transfer_a_response_that_has_already_been_finalized" xml:space="preserve">
+    <value>لا يمكن تحويل الطلب الذي قد تم الانتهاء منه ، الرجاء التواصل مع مسؤول النظام </value>
+        <comment/>
+  </data>
+    <data name="invalid_current_transfer_assignee" xml:space="preserve">
+    <value>يجب ان تكون لديك صلاحيات مسؤول مؤشرات الأداء في هذه المرحلة</value>
+        <comment/>
+  </data>
+    <data name="response_cannot_be_rejected" xml:space="preserve">
+    <value>لا يمكنك رفض هذا الطلب بما الطلب مازال في مرحلة ادخال البيانات!</value>
+        <comment/>
+  </data>
+    <data name="signatories_have_not_been_specified" xml:space="preserve">
+    <value>يجب تحديد المسؤول الذي سيقوم بعملية اعتماد الطلب</value>
+        <comment/>
+  </data>
+    <data name="some_or_all_of_the_provided_signatories_are_not_authorized" xml:space="preserve">
+    <value>خطأ: يوجد أحد اللذين تم تعيينهم لاعتماد الطلب ليس لديه صلاحية الطلبات على مستوى الوحده التنظيمية</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_item_item_connected_to_other_resources" xml:space="preserve">
+    <value>خطأ: لا يمكنك حذف هذا العنصر بينما هو مرتبط  مع بيانات اخرى بالنظام، يجب اولا فك ارتباطه بالعناصر الاخرى في النظام ثم تنفيذ عملية الحذف</value>
+        <comment/>
+  </data>
+    <data name="contract_is_already_exist" xml:space="preserve">
+    <value>لقد سبق وتم ادخال الاتفاقية او العقد!</value>
+        <comment/>
+  </data>
+    <data name="status_changed_successfully" xml:space="preserve">
+    <value>تم تغيير الحاله بنجاح</value>
+        <comment/>
+  </data>
+    <data name="item_is_already_active" xml:space="preserve">
+    <value>لقد سبق وتم تفعيل هذا العنصر!</value>
+        <comment/>
+  </data>
+    <data name="you_must_provide_all_standards" xml:space="preserve">
+    <value>لا بد من توفر  كافة المعايير!!</value>
+        <comment/>
+  </data>
+    <data name="ensure_that_all_scores_have_a_value" xml:space="preserve">
+    <value>بجب ادخال كافة القيم لكل المعايير</value>
+        <comment/>
+  </data>
+    <data name="cannot_update_a_terminated_partner" xml:space="preserve">
+    <value>لا يمكن تعديل بيانات الشريك الذي تم الغاء شراكته</value>
+        <comment/>
+  </data>
+    <data name="partner_is_not_linked_with_department" xml:space="preserve">
+    <value>خطأ: الشريك غير مرتبط مع الوحدة التنظيمية</value>
+        <comment/>
+  </data>
+    <data name="partner_or_kpi_does_not_exist" xml:space="preserve">
+    <value>خطأ: اما ان الشريك غير موجود أو المؤشر غير موجود!</value>
+        <comment/>
+  </data>
+    <data name="partner_is_already_using_the_file" xml:space="preserve">
+    <value>لقد سبق وتم ربط الملف مع الشريك</value>
+        <comment/>
+  </data>
+    <data name="time_frame_date_is_required" xml:space="preserve">
+    <value>يجب تحديد المدة الزمنية!</value>
+        <comment/>
+  </data>
+    <data name="there_should_be_at_least_one_strategic_goal" xml:space="preserve">
+    <value>يجب اختيار هدف استراتيجي واحد على الأقل</value>
+        <comment/>
+  </data>
+    <data name="from_time_should_be_less_than_to" xml:space="preserve">
+    <value>خطأ : يجب ان يكون تاريخ البدء اصغر من تاريخ الانتهاء!</value>
+        <comment/>
+  </data>
+    <data name="some_inputs_were_selected_more_than_once" xml:space="preserve">
+    <value>خطأ: تم اختيار بعص مدخلات الخطة اكثر من مره!</value>
+        <comment/>
+  </data>
+    <data name="the_plan_should_be_assigned_to_either_a_department_team_or_user" xml:space="preserve">
+    <value>يجب تعيين الخطة اما الى وحدة تنظيمية او فريق عمل او موظف !</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_decided_subsubtasks" xml:space="preserve">
+    <value>لا يمكن حذف الاجراءات او المهام التي تم اتخاذ القرار بشأنها.</value>
+        <comment/>
+  </data>
+    <data name="the_planSubtask_should_be_assigned_to_either_a_department_team_or_user" xml:space="preserve">
+    <value>يجب تعيين المهمة اما لوحدة تنظيمية او فريق عمل او مستخدم (موظف)</value>
+        <comment/>
+  </data>
+    <data name="could_not_find_user" xml:space="preserve">
+    <value>المستخدم (الموظف) غير موجود!</value>
+        <comment/>
+  </data>
+    <data name="could_not_find_department" xml:space="preserve">
+    <value>لم يتم العثور على الوحدة التنظيمية !</value>
+        <comment/>
+  </data>
+    <data name="the_subtask_period_should_be_within_the_parent_task" xml:space="preserve">
+    <value>يجب ان لا تتجاوز مدة وتاريخ المهام الفرعية الاطار الزمني المحدد للمهمة الرئيسية!</value>
+        <comment/>
+  </data>
+    <data name="the_new_assignment_conflicts_with_assigned_entities_in_some_or_all_child_tasks" xml:space="preserve">
+    <value>هناك تضارب في عملية تعيين هذه المهمه بسبب عملة التعيين السابقة للمهام الفرعية غير متطابق مع التعيين الجديد!</value>
+        <comment/>
+  </data>
+    <data name="the_planTask_should_be_assigned_to_either_a_department_team_or_user" xml:space="preserve">
+    <value>يجب تكليف المهمة اما لوحدة تنظيمية او مستخدم او فريق عمل!</value>
+        <comment/>
+  </data>
+    <data name="the_task_period_should_be_within_the_parent_plan" xml:space="preserve">
+    <value>يجب ان تكون فترة تنفيذ المهام ضمن اطار المدة الزمنية لتنفيذ الخطة الرئيسية</value>
+        <comment/>
+  </data>
+    <data name="standard_is_already_using_the_file" xml:space="preserve">
+    <value>لقد سبق وتم اضافة هذا الملف للمعيار الحالي</value>
+        <comment/>
+  </data>
+    <data name="standard_or_library_file_does_not_exist" xml:space="preserve">
+    <value>خطأ: اما أن الملف غير موجود او أن المعيار غير موجود!</value>
+        <comment/>
+  </data>
+    <data name="user_is_already_in_the_team" xml:space="preserve">
+    <value>تم اضافة المستخدم الى هذا الفريق من قبل!</value>
+        <comment/>
+  </data>
+    <data name="user_is_not_on_the_team" xml:space="preserve">
+    <value>المستخدم ليس عضوا في الفريق!</value>
+        <comment/>
+  </data>
+    <data name="admin_cannot_be_deleted" xml:space="preserve">
+    <value>لا يمكن حذف المستخدم اللذي يملك صلاحيات مدير النظام!!</value>
+        <comment/>
+  </data>
+    <data name="email_address_is_required" xml:space="preserve">
+    <value>البريد الإلكتروني اجباري!</value>
+        <comment/>
+  </data>
+    <data name="password_is_required" xml:space="preserve">
+    <value>ادخل كلمة المرور!</value>
+        <comment/>
+  </data>
+    <data name="cannot_set_permissions_for_main_admin_user" xml:space="preserve">
+    <value>لا يمكن تغيير صلاحيات مدير النظام!!</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_item_there_are_capabilities_under_it" xml:space="preserve">
+    <value>لا يمكن حذف هذا التصنيف بسبب وجود قدرات مرتبطة به، يجب نقل القدرات على نوع او تصنيف اخر ومن ثم حذفه!</value>
+        <comment/>
+  </data>
+    <data name="start_time_cannot_come_after_end_time" xml:space="preserve">
+    <value>وقت البداية دائما اصغر من وقت النهاية!!</value>
+        <comment/>
+  </data>
+    <data name="period_numbers_and_selected_measurement_cycle_do_not_match" xml:space="preserve">
+    <value>فترات القياس غير متناسبة مع دورة قياس المؤشر!!</value>
+        <comment/>
+  </data>
+    <data name="the_type_is_linked_to_other_kpis" xml:space="preserve">
+    <value>نوع المؤشر مرتبط ببقية المؤشرات!!</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_item_there_are_partners_under_it" xml:space="preserve">
+    <value>لا يمكن حذف هذا العنصر لانه مرتبط بالشركاء!!</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_enhancement_type_since_it_is_connected_to_other_resources" xml:space="preserve">
+    <value>لا يمكن حذف هذا النوع كونه مرتبط بمدخلات اخرى بالنظام</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_policy_since_some_operations_are_linked_to_it" xml:space="preserve">
+    <value>لا يمكن حذف هذا النوع لانه مستخدم مع بيانات اخرى في النظام يجب تغييرة في كافة البيانات المرتبطة به ثم اتمام عملية الحذف</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_rule_or_regulation_since_some_operations_are_linked_to_it" xml:space="preserve">
+    <value>لا يمكن حذف هذا النوع لانه مستخدم مع بيانات اخرى في النظام يجب تغييرة في كافة البيانات المرتبطة به ثم اتمام عملية الحذف</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_specification_since_some_operations_are_linked_to_it" xml:space="preserve">
+    <value>لا يمكن حذف هذا النوع لانه مستخدم مع بيانات اخرى في النظام يجب تغييرة في كافة البيانات المرتبطة به ثم اتمام عملية الحذف</value>
+        <comment/>
+  </data>
+    <data name="you_are_not_authorize_to_first_approve_this_benchmark" xml:space="preserve">
+    <value>ليس لديك صلاحية الاعتماد الاول !</value>
+        <comment/>
+  </data>
+    <data name="there_should_be_at_least_one_operation" xml:space="preserve">
+    <value>يجب اختيار عملية واحده على الاقل</value>
+        <comment/>
+  </data>
+    <data name="partner_is_required" xml:space="preserve">
+    <value>الشريط اجباري!</value>
+        <comment/>
+  </data>
+    <data name="entity_name_is_required" xml:space="preserve">
+    <value>اسم الجهه اجباري!</value>
+        <comment/>
+  </data>
+    <data name="you_should_mention_request_reasons" xml:space="preserve">
+    <value>يجب ادخال سبب الطلب</value>
+        <comment/>
+  </data>
+    <data name="you_cannot_submit_a_report_for_this_benchmark" xml:space="preserve">
+    <value>لا يمكن تصدير تقرير لهذه المقارنة !</value>
+        <comment/>
+  </data>
+    <data name="cannot_delete_item_since_it_is_connected_to_principles" xml:space="preserve">
+    <value>لا يمكن حذف القدرة لانها مستخدمة مع بعض المعايير الفرعية او المبادئ!</value>
+        <comment/>
+  </data>
+    <data name="user_is_already_in_the_department" xml:space="preserve">
+    <value>المستخدم موجود تحت هذه الوحده التنظيمية!</value>
+        <comment/>
+  </data>
+    <data name="user_is_not_on_the_department" xml:space="preserve">
+    <value>المستخدم ليس ضمن الوحده التنظيمية</value>
+        <comment/>
+  </data>
+</root>

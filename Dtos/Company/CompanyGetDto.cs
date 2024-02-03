@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace A1.Dtos.Company;
 
@@ -16,7 +15,7 @@ public class CompanyGetDto
             CreatedAt = item.CreatedAt,
             UpdatedAt = item.UpdatedAt,
         };
-    } 
+    }
 
     public Guid Id { get; set; }
 

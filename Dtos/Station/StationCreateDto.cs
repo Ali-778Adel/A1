@@ -1,12 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace A1.Dtos.Station;
 
 public class StationCreateDto
 {
-    [Required(ErrorMessage = "Active is required")]
+    [Required(ErrorMessage = "0_is_required")]
+    [DisplayName("active")]
     public bool Active { get; set; }
+
+    [Required(ErrorMessage = "0_is_required")]
+    [DisplayName("name_ar")]
     public string NameAr { get; set; }
+
     public string NameEn { get; set; }
     public string Slug { get; set; }
     public Guid CompanyId { get; set; }
@@ -27,6 +33,4 @@ public class StationCreateDto
     public List<string> ConditionsAr { get; set; }
     public List<string> ConditionsEn { get; set; }
     public IFormFile Layout { get; set; }
-
-    
 }

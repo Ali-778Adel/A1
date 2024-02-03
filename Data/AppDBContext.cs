@@ -1,47 +1,24 @@
-﻿using A1.data.Entities;
+﻿using System.Reflection;
+using System.Security.Claims;
+using A1.data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace A1.data;
 
-public class AppDbContext : DbContext
+public class AppDbContext(DbContextOptions<AppDbContext> dbContextOptions, IHttpContextAccessor httpContextAccessor)
+    : DbContext(dbContextOptions)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions)
-    {
-    }
+    private readonly Guid? _userId = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) != null
+        ? Guid.Parse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier)!)
+        : null;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var stringConverter = new ValueConverter<List<string>, string>(
-            v => string.Join(',', v),
-            v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
-        );
-
-        modelBuilder.Entity<Station>().Property(x => x.MoreServices).HasConversion(stringConverter);
-        modelBuilder.Entity<Station>().Property(x => x.ConditionsAr).HasConversion(stringConverter);
-        modelBuilder.Entity<Station>().Property(x => x.ConditionsEn).HasConversion(stringConverter);
-        modelBuilder.Entity<Station>().Property(x => x.Image).HasConversion(
-            v => Convert.ToBase64String(v),
-            v => Convert.FromBase64String(v)
-        );
-        modelBuilder.Entity<Station>().Property(x => x.Layout).HasConversion(
-            v => Convert.ToBase64String(v),
-            v => Convert.FromBase64String(v)
-        );
-
-
-        modelBuilder.Entity<Unit>().Property(x => x.NotesAr).HasConversion(stringConverter);
-        modelBuilder.Entity<Unit>().Property(x => x.NotesEn).HasConversion(stringConverter);
-        
-        modelBuilder.Entity<Unit>().Property(x => x.Image).HasConversion(   
-            v=>Convert.ToBase64String(v),       
-            v=>Convert.FromBase64String(v)
-            
-            );
-        
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetCallingAssembly());
     }
+    
+
     public DbSet<Company> Companies { get; set; }
     public DbSet<Station> Stations { get; set; }
-
     public DbSet<Unit> Units { get; set; }
 }
